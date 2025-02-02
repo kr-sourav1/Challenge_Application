@@ -1,14 +1,13 @@
 # ChallengeApp - Spring Boot Application
 
 ## 📌 Project Overview
-ChallengeApp is a **Spring Boot** application designed for managing and tracking challenges efficiently. It is built with a **Java backend**, integrated with a **PostgreSQL database**, and deployed on **AWS Elastic Beanstalk** using an **EC2 instance**. The application follows a **microservices architecture** and incorporates best DevOps practices.
+ChallengeApp is a **Spring Boot** application designed for managing and tracking challenges efficiently. It is built with a **Java backend**, integrated with a **PostgreSQL database**, and deployed on **AWS Elastic Beanstalk** using an **EC2 instance** and **S3**. The application follows a **microservices architecture** and incorporates best DevOps practices.
 
 ## 🚀 Tech Stack
 - **Backend:** Java, Spring Boot, Spring MVC, Spring Security, Spring Data JPA
-- **Database:** PostgreSQL (Hosted on AWS RDS)
+- **Database:** H2 database, PostgreSQL (Hosted on AWS RDS)
 - **Build Tool:** Maven
-- **Deployment:** AWS Elastic Beanstalk (EC2, RDS, IAM)
-- **Containerization:** Docker (Optional)
+- **Deployment:** AWS Elastic Beanstalk (EC2, RDS, IAM, S3)
 - **Version Control:** Git, GitHub
 
 ## 📂 Project Structure
@@ -28,7 +27,6 @@ ChallengeApp/
 │
 ├── .mvn/                                 # Maven Wrapper
 ├── mvnw, mvnw.cmd                        # Maven Wrapper Scripts
-├── Dockerfile (if using Docker)
 ├── README.md                             # Project Documentation
 └── pom.xml                                # Maven Build Configuration
 ```
@@ -38,8 +36,12 @@ ChallengeApp/
 Ensure you have the following installed:
 - **Java 17+**
 - **Maven**
+- **H2 database**
+- **insomnia**
 - **PostgreSQL** (if running locally)
 - **AWS CLI** (for deployment)
+- **Intellij**
+- **Visual Studio Code**
 
 ### 🔹 Clone the Repository
 ```sh
@@ -74,14 +76,14 @@ OR run directly using Maven:
 - Go to **AWS Elastic Beanstalk Console**
 - Create a new environment (Java-based application)
 - Upload the generated JAR file (`target/ChallengeApp-0.0.1-SNAPSHOT.jar`)
-- Configure **EC2, IAM roles, and RDS PostgreSQL**
+- Configure **EC2, IAM roles, S3, and RDS PostgreSQL**
 - Assign a **public IP** to the EC2 instance
 
 ### **3️⃣ Expose the API to Public**
-- Ensure the **security group** allows inbound traffic on port **8080**
-- Use `curl` or Postman to test:
+- Ensure the **security group** allows inbound traffic on port **5000**
+- Use `curl` or insomnia to test:
 ```sh
-curl http://<EC2_PUBLIC_IP>:8080/api/health
+curl http://<EC2_PUBLIC_IP>:5000/api/health
 ```
 
 ## 📌 API Endpoints (Example)
@@ -94,9 +96,6 @@ curl http://<EC2_PUBLIC_IP>:8080/api/health
 
 ## 🔥 Contributing
 Feel free to fork this repo and contribute via pull requests.
-
-## 📜 License
-This project is licensed under the MIT License.
 
 ---
 🚀 **Happy Coding!** 🎯
